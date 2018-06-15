@@ -55,19 +55,28 @@ program cumtab, rclass
         error 2000
     }
     
+    // -table- command places a single categorical along the left column
+    //         with counts in the second column.
+    // -cumtab- intends to list a single categorical across column headers
+    //         with counts as a single row below that.
+    //         Create a COUNTS variable for later use that will adjust
+    //         output of -table command-.
+    // This set of if statements also reorders the varlist so that COUNTS will
+    // be first in the list, RESULT will be the second, and SUB_GROUP_CATEGORY
+    // (if applicable) will be last.
     if `nvar' == 1 {
-        gen DIMENSION = 1
-        local thevars "DIMENSION RESULT"
+        gen COUNTS = 1                                     // Consider using tempvar command
+        local thevars "COUNTS RESULT"
     }
     if `nvar' == 2 {
-        gen DIMENSION = 1
+        gen COUNTS = 1                                     // Consider using tempvar command
         clonevar SUB_GROUP_CATEGORY = `2'
-        local thevars "DIMENSION RESULT SUB_GROUP_CATEGORY"
+        local thevars "COUNTS RESULT SUB_GROUP_CATEGORY"
     }
     if `nvar' == 3 {
-        clonevar DIMENSION = `3'
+        clonevar COUNTS = `3'                              // Consider using tempvar command
         clonevar SUB_GROUP_CATEGORY = `2'
-        local thevars "DIMENSION RESULT SUB_GROUP_CATEGORY"
+        local thevars "COUNTS RESULT SUB_GROUP_CATEGORY"
     }
 
     if "`ucase'" == "" | "`ucase'" == "seeds" {    // Seeds are the default use case.
