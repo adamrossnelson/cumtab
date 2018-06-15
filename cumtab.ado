@@ -77,7 +77,7 @@ program cumtab, rclass
         label define col_head 0 "Total Apps" 1 "Not Offered" 2 "Jobs Offered" 3 "Offers Accepted"
     }
     else if "`ucase'" == "stus" {                  // School, scholarship, other applications.
-        label define col_head 0 "Total Apps" 1 "Not Admitted" 2 "Admitted" 3 "Matriculated"
+        label define col_head 0 "Total Apps" 1 "Not Admitted" 2 "Admitted" 3 "Enrolled"
     }
     else if "`ucase'" == "cjust" {                  // Criminal justice, arrests, charges, convictions.
         label define col_head 0 "Total Arrests" 1 "Not Charged" 2 "Charged" 3 "Convicted"
